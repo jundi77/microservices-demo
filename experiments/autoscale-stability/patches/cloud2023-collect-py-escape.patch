@@ -1,0 +1,13 @@
+diff --git a/kubernetes/research/cloud-dynamics-metrics/collector/collect.py b/kubernetes/research/cloud-dynamics-metrics/collector/collect.py
+index c99d4bd..209367f 100755
+--- a/kubernetes/research/cloud-dynamics-metrics/collector/collect.py
++++ b/kubernetes/research/cloud-dynamics-metrics/collector/collect.py
+@@ -71,7 +71,7 @@ def main():
+     status=[]
+     outdir=exp/"metrics"; outdir.mkdir(exist_ok=True)
+     for name,q in qenv.items():
+-        q=q.replace("__NAMESPACE__",a.namespace).replace("__APP__",re.escape(app))
++        q=q.replace("__NAMESPACE__",a.namespace).replace("__APP__",re.escape(app).replace("\\","\\\\"))
+         try:
+             rows=flatten(prom_range(a.prometheus_url,q,start,end,step))
+             write_metric(outdir/(name.lower()+".csv"),rows)
