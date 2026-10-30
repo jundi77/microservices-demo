@@ -7,5 +7,5 @@ set -euo pipefail
 . "$(dirname -- "$0")/lib.sh"
 
 kubectl apply -f "$ROOT/k8s/linkerd-proxy-podmonitor.yaml"
-sed "s/__HOST_IP__/$HOST_IP/" "$ROOT/k8s/boutique-ingress.yaml" | kubectl apply -f -
+sed "s/__HOST_IP__/$HOST_IP/" "$ROOT/k8s/boutique-ingress.yaml" | kubectl apply -n "$NAMESPACE" -f -
 echo "Boutique: $TARGET_URL"

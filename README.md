@@ -81,7 +81,8 @@ Find **Protocol Buffers Descriptions** at the [`./protos` directory](/protos).
 5. Deploy Online Boutique to the cluster.
 
    ```sh
-   kubectl apply -f ./release/kubernetes-manifests.yaml
+   # kubectl apply -f ./release/kubernetes-manifests.yaml
+   linkerd inject ./release/kubernetes-manifests.yaml | kubectl apply -f -
    ```
 
 6. Wait for the pods to be ready.
